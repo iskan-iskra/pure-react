@@ -18,18 +18,8 @@ export default function App() {
     };
   }, [count]);
 
-  window.addEventListener("click", (event) => {
-    switch (event.target.id) {
-      case btnIdDic.increment:
-        setCount(count + 1);
-        break;
-      case btnIdDic.decrement:
-        setCount(count - 1);
-        break;
-      default:
-        return;
-    }
-  });
+  const incrementHandler = () => setCount(count + 1);
+  const decrementHandler = () => setCount(count - 1);
 
   const element = document.createElement("div");
   element.innerHTML = `
@@ -40,6 +30,9 @@ export default function App() {
         <button id="${btnIdDic.decrement}">Decrement</button>
       </div>
     `;
+
+  element.querySelector(`#${btnIdDic.increment}`).onclick = incrementHandler;
+  element.querySelector(`#${btnIdDic.decrement}`).onclick = decrementHandler;
 
   return element;
 }
